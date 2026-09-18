@@ -1,0 +1,132 @@
+.contenedor {
+  width: 92%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 45px 0;
+}
+
+h1 {
+  margin: 0;
+  text-align: center;
+  font-size: 38px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.contador {
+  width: fit-content;
+  margin: 15px auto 35px;
+  padding: 10px 22px;
+  border-radius: 25px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.talleres {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.tarjeta {
+  padding: 25px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarjeta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+}
+
+.tarjeta h2 {
+  margin: 0 0 12px;
+  font-size: 21px;
+  color: #111827;
+}
+
+.tarjeta p {
+  margin: 0 0 22px;
+  color: #64748b;
+  font-size: 15px;
+}
+
+button {
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 9px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+button:disabled {
+  background: #cbd5e1;
+  color: #64748b;
+  cursor: not-allowed;
+}
+
+.confirmacion {
+  margin: 15px 0 10px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #ecfdf5;
+  border: 1px solid #bbf7d0;
+  color: #15803d;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+button.cancelar {
+  background: #ef4444;
+}
+
+button.cancelar:hover {
+  background: #dc2626;
+}
+
+@media (max-width: 800px) {
+  .talleres {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 550px) {
+  .contenedor {
+    width: 90%;
+    padding: 30px 0;
+  }
+
+  .talleres {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .tarjeta {
+    padding: 20px;
+  }
+}
