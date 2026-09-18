@@ -1,45 +1,87 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<div class="contenedor">
+<main class="contenedor">
+
   <h1>{{ titulo }}</h1>
 
-  <div class="contador">
+  <p class="contador">
     Talleres seleccionados: {{ inscritos().length }}
-  </div>
+  </p>
 
-  <div class="talleres">
+  @if (inscritos().length === 2) {
+    <p class="limite">
+      Has alcanzado el máximo de dos talleres
+    </p>
+  }
+
+  <section class="catalogo">
+
     @for (taller of talleres; track taller.id) {
-      <div class="tarjeta">
+      <article class="tarjeta">
+
         <h2>{{ taller.nombre }}</h2>
 
         <p>Duración: {{ taller.duracion }}</p>
 
         <button
+          class="boton-inscribir"
           (click)="inscribirse(taller.id)"
-          [disabled]="inscritos().includes(taller.id)"
+          [disabled]="estaInscrito(taller.id) || inscritos().length >= 2"
         >
           Inscribirme
         </button>
 
-        @if (inscritos().includes(taller.id)) {
-          <div class="confirmacion">
-            Ya estás inscrito
-          </div>
+        @if (estaInscrito(taller.id)) {
+          <div class="inscrito">
+            <p>Ya estás inscrito</p>
 
-          <button
-            class="cancelar"
-            (click)="cancelarInscripcion(taller.id)"
-          >
-            Cancelar inscripción
-          </button>
+            <button
+              class="boton-cancelar"
+              (click)="cancelarInscripcion(taller.id)"
+            >
+              Cancelar inscripción
+            </button>
+          </div>
         }
-      </div>
+
+      </article>
     }
-  </div>
-</div>
+
+  </section>
+
+  <section class="resumen">
+
+    <div class="resumen-header">
+      <h2>Resumen de inscripciones</h2>
+
+      <button
+        class="boton-cancelar-todas"
+        (click)="cancelarTodas()"
+        [disabled]="inscritos().length === 0"
+      >
+        Cancelar todas las inscripciones
+      </button>
+    </div>
+
+    @if (talleresSeleccionados.length === 0) {
+
+      <p class="vacio">
+        Todavía no has seleccionado talleres
+      </p>
+
+    } @else {
+
+      <div class="lista-seleccionados">
+
+        @for (taller of talleresSeleccionados; track taller.id) {
+          <div class="seleccionado">
+            <strong>{{ taller.nombre }}</strong>
+            <span>{{ taller.duracion }}</span>
+          </div>
+        }
+
+      </div>
+
+    }
+
+  </section>
+
+</main>
